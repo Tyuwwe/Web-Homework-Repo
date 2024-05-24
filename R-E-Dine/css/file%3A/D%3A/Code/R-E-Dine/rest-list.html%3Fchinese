@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>RED 点餐配送系统</title>
+  </head>
+  <body class="index-body">
+    <div class="drag-part"></div>
+    <div class="wrapper">
+        <div id="closeWindow" class="btn close-btn"></div>
+    </div>
+    <div class="block-center-list">
+      <h1>RED</h1>
+      <h2 class="center-subtitle">R-E-Dine</h2>
+      <div class="rest-desc">
+        <div class="rest-name">Chinese Restaurant</div>
+        <div class="rest-subtitle">A Chinese Restaurant</div>
+      </div>
+      <div id="foodlist-box" class="rest-foodlist">
+        </div>
+      </div>
+      <button id="submit" class="foodlist-submit">提交</button>
+    </div>
+  </body>
+  <script src="./js/restlist-renderer.js"></script>
+  <script src="./js/general-functions.js"></script>
+</html>

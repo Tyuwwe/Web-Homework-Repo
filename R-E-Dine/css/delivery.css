@@ -1,0 +1,339 @@
+body {
+    background-color: var(--main-bkg);
+    transition-duration: 0.4s;
+}
+
+.deli-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.upper-container {
+    width: 500px;
+    height: 60px;
+    margin-bottom: 20px;
+    background-color: var(--light-gray);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deli-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--pure-black);
+}
+
+.bottom-container {
+    width: 500px;
+    height: 500px;
+    background-color: var(--light-gray);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deli-order-list {
+    width: 480px;
+    height: 450px;
+    margin-left: 0px;
+    border-radius: 30px;
+    background-color: var(--deep-gray);
+    overflow: auto;
+}
+
+.deli-order-list-outside {
+    width: 450px;
+    height: 450px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.deli-order {
+    width: 450px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    background-color: var(--bright-gray);
+    transition-duration: 0.4s;
+}
+
+.deli-order:hover {
+    background-color: var(--lighter-gray);
+    transform: scale(0.95);
+}
+
+.deli-order-left {
+    margin-left: 10%;
+    width: 35%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.deli-order-title {
+    color: var(--pure-black);
+    font-size: 25px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.deli-order-dest {
+    color: var(--pure-black);
+    font-size: 20px;
+    font-weight: normal;
+    pointer-events: none;
+}
+
+.deli-order-len {
+    color: var(--main-orange);
+    font-size: 15px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.deli-order-right {
+    margin-right: 10%;
+    float: right;
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.deli-order-user {
+    color: var(--pure-black);
+    font-size: 25px;
+    font-weight: normal;
+    pointer-events: none;
+}
+
+.deli-order-price {
+    color: var(--main-orange);
+    font-size: 35px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+/*_detail.html*/
+.deli-detail-body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.deli-box-3d {
+    position: absolute;
+    perspective: 1000px;
+    left: 50%;
+    top: 50%;
+    /* bottom: 50%; */
+    transform: translate(-50%, -50%);
+}
+
+.outside-box {
+    transform-style: preserve-3d;
+    position: relative;
+    transition: all .1s;
+    perspective: 1000px;
+
+}
+
+.deli-detail-upper {
+    transform-style: preserve-3d;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-image: url(./../assets/pic/dest-CA-YT.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all .1s;
+}
+
+.deli-detail-upper-container {
+    position: relative;
+    width: 450px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: linear-gradient(to right, var(--lighter-gray) 0%, var(--lighter-gray-alpha) 100%);
+    transition-duration: 0.1s;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deli-detail-upper-container:hover {
+    background-color: var(--main-orange);
+    opacity: 90%;
+    box-shadow: none;
+}
+
+.deli-detail-title {
+    font-size: 30px;
+    font-weight: bolder;
+    color: var(--pure-black);
+    margin-bottom: 5px;
+}
+
+.deli-detail-subtitle {
+    font-size: 20px;
+    font-weight: lighter;
+    color: var(--dark-gray);
+}
+
+.deli-detail-dest {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.deli-detail-time {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--main-orange);
+}
+
+.deli-detail-bottom {
+    width: 450px;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: var(--bright-gray);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deli-detail-order {
+    background-color: var(--lighter-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 100px;
+    transition-duration: 0.4s;
+}
+
+.deli-detail-order:hover {
+    background-color: var(--light-gray);
+}
+
+.deli-detail-order-name {
+    color: var(--dark-gray);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.deli-detail-order-price {
+    color: var(--deep-gray);
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.deli-detail-maintitle {
+    width: 450px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--pure-black);
+    margin-bottom: 10px;
+}
+
+.deli-detail-submaintitle {
+    width: 450px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--deep-gray);
+    margin-bottom: 25px;
+}
+
+.deli-detail-order-count {
+    font-size: 20px;
+    font-weight: lighter;
+    color: var(--deep-gray);
+}
+
+.deli-detail-summit,
+.deli-index-refresh {
+    background-color: var(--main-orange);
+    color: var(--pure-white);
+    width: 450px;
+    height: 65px;
+    border: 0;
+    font-size: 25px;
+    border-radius: 100px;
+    transition-duration: 0.4s;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.deli-index-refresh {
+    width: 500px;
+}
+
+.deli-detail-summit:hover,
+.deli-index-refresh:hover {
+    background-color: var(--deep-orange);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*delivery-time.html*/
+.deli-time-remain {
+    display: flex;
+    flex-direction: row;
+    color: var(--main-orange);
+    font-size: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.colon {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.deli-time-cancel {
+    background-color: var(--warn-red);
+    color: white;
+    width: 450px;
+    height: 65px;
+    border: 0;
+    font-size: 25px;
+    border-radius: 100px;
+    transition-duration: 0.4s;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.deli-time-cancel:hover {
+    background-color: var(--warn-red-lite);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deli-detail-info {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 450px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: lighter;
+    color: var(--deep-gray);
+}

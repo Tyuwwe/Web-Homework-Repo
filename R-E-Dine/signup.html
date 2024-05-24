@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>RED 点餐配送系统</title>
+  </head>
+  <body class="login-body">
+    <div class="drag-part"></div>
+    <div class="wrapper">
+        <div id="closeWindow" class="btn close-btn"></div>
+        <div id="modeswitch" class="btn settings-btn"><img class="settings-ico" width="100%" height="100%" src="./assets/settings.png"></div>
+    </div>
+    <div class="login_R signup" id="Right">
+      <h3>RED 点餐配送系统</h3>
+      <p class="font_s">注册页面</p>
+      <div class="pass-box">
+        <p class="font_username"><img class="passSVG" src="./assets/username.svg"/>用户名：</p>
+      </div>
+      <input class="signup_username" type="text" size="20" maxlength="30" placeholder="输入你的用户名">
+      <div class="pass-box">
+        <p class="font_email"><img class="passSVG" src="./assets/email.svg"/>邮箱：</p>
+      </div>
+      <input class="signup_email" type="email" size="20" maxlength="30" placeholder="输入你的邮箱">
+      <div class="pass-box">
+        <p class="font_password"><img class="passSVG" src="./assets/password.svg"/>密码：</p>
+      </div>
+      <input class="signup_password" type="password" size="20" maxlength="30" placeholder="输入你的密码">
+      <div class="warn-area"></div>
+      <button id="returnBTN" class="returnBTN">返回登录页</button>
+      <button id="signupBTN" class="Signup_PageBTN">注册</button>
+    </div>
+    <script src="./js/signup.js"></script>
+    <script src="./js/general-functions.js"></script>
+    <script src="./js/md5.min.js"></script>
+  </body>
+</html>
