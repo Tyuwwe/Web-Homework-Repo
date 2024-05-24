@@ -16,16 +16,16 @@ License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine)
 2. Install [Node.js](https://nodejs.org/en)
 3. Install electron
 
-```bash
-cd ./R-E-Dine/
-npm install --save-dev electron
-```
+    ```bash
+    cd ./R-E-Dine/
+    npm install --save-dev electron
+    ```
 
-3. Start
+4. Start
 
-```bash
-npm start
-```
+    ```bash
+    npm start
+    ```
 
 ## [R-E-Dine Server](./R-E-Dine-Server) README.md
 
@@ -37,20 +37,27 @@ License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine-Server)
 2. Install [Python](https://www.python.org/) and [PostgreSQL](https://www.postgresql.org/)
 3. Install Python Requirements
 
-```bash
-pip install flask, flask_cors, flask_sqlalchemy, psycopg2
-```
+    ```bash
+    pip install flask, flask_cors, flask_sqlalchemy, psycopg2
+    ```
 
 4. Create PostgreSQL Server
 
-```bash
-1. open pgAdmin
-2. create server
-```
+    ```
+    1. open pgAdmin
+    2. create server
+    ```
 
 5. If you need example data, see [here](./R-E-Dine-Server/README.md). Use query tools to insert them.
-6. Start
+6. If you want to register dining manager account or dilivery, please insert in pgAdmin query tools or command line.
+   ```
+   UserRoleList:
+   1. normal user: customer
+   2. dining manager: admin
+   3. deliveryman: delivery
+   ```
+7. Start
 
-```bash
-python ./R-E-Dine-Server/app.py
-```
+    ```bash
+    python ./R-E-Dine-Server/app.py
+    ```
