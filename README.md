@@ -43,18 +43,19 @@ License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine-Server)
 
    ```
    1. open pgAdmin
-   2. create server, name is: "R-E-Dine"
+   2. create server "R-E-Dine"
    ```
 5. If you need example data, see [here](./R-E-Dine-Server/README.md). Use query tools to insert them.
-6. If you want to register dining manager account or dilivery, please insert in pgAdmin query tools.
+6. If you want to register dining manager or delivery account, please insert manually in pgAdmin query tools.
 
    ```
-   User Role:
+   User Table
+   Role:
    1. normal user: customer
    2. dining manager: admin
-   3. deliveryman: delivery
+   3. delivery man: delivery
 
-   Email:
+   Email & Name:
    Any
 
    User ID:
