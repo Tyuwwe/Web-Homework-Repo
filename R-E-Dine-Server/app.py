@@ -29,6 +29,9 @@ class Order(db.Model):
     payment_status = db.Column(db.Boolean, default=False)
     distance = db.Column(db.Float)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    def __repr__(self):
+        print('Order created:', self.id, self.total_price, self.status, self.payment_status, self.distance, self.created_at)
+        return f'<Order {self.id}>'
 
 class OrderDetail(db.Model):
     __tablename__ = 'order_details'
@@ -86,6 +89,8 @@ def create_user():
     )
     db.session.add(new_user)
     db.session.commit()
+
+    print('User created:', new_user.id, new_user.name, new_user.email, new_user.role)
     
     return jsonify({'id': new_user.id, 'name': new_user.name, 'email': new_user.email, 'role': new_user.role}), 201
 
@@ -125,6 +130,9 @@ def create_order():
             db.session.add(order_detail)
 
         db.session.commit()
+
+        # 新增日志
+        print('Order created:', new_order.id, new_order.total_price, new_order.status, new_order.payment_status, new_order.distance, new_order.created_at)
 
         return jsonify({
             'order_id': new_order.id,
