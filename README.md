@@ -4,7 +4,7 @@
 
 Built with Node.js v20.9.0 & Electron 27.1.0 & Python Flask & PostgreSQL
 
-Version 1.6.0 r2
+Version 1.6.1 r2
 
 ## [R-E-Dine Electron Client](./R-E-Dine)
 
@@ -52,14 +52,15 @@ License: GPLv3
    User Table
    Role:
    1. normal user: customer
-   2. dining manager: admin
-   3. delivery man: delivery
+   2. chinese restaurant manager: chinese
+   3. western restaurant manager: western
+   4. delivery man: delivery
 
    Email & Name:
    Any
 
    User ID:
-   Auto Increase
+   Auto Increase (SERIAL in postgresql)
 
    Password:
    MD5 encrypted password
