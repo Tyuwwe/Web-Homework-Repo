@@ -28,7 +28,7 @@ mouseOverContainer.addEventListener('mouseleave', (e) => {
 var hour = document.getElementsByClassName('deli-hour')[0];
 var min = document.getElementsByClassName('deli-min')[0];
 var sec = document.getElementsByClassName('deli-sec')[0];
-21
+
 function time() {
     if(Number(sec.innerHTML) - 1 < 0) {
       if(Number(min.innerHTML) - 1 < 0) {
@@ -43,6 +43,7 @@ function time() {
             hour.innerHTML = "0" + hour.innerHTML;
           }
           min.innerHTML = 59;
+          sec.innerHTML = 59;
         }
 
       }

@@ -1,5 +1,4 @@
-#R-E-Dine Server Version 1.1a
-#Author: Yang Ying
+#R-E-Dine Server Version 1.1b
 #License: GPLv3
 
 from flask import Flask, jsonify, request
@@ -8,20 +7,18 @@ from flask_cors import CORS  # 导入 CORS
 app = Flask(__name__)
 import random
 
-# 配置数据库。这里以SQLite为例，你可以根据实际情况替换为MySQL或PostgreSQL的连接字符串
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/R-E-Dine'
 
 db = SQLAlchemy(app)
 
 # 定义数据模型
 class User(db.Model):
-    __tablename__ = 'users'  # 确保表名与数据库中的名称匹配
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.String(50),default='customer')  # 例如 'admin', 'staff', 'customer' 等
-    # 可以继续添加其他列，如is_admin等
+    role = db.Column(db.String(50),default='customer')
 
 class Order(db.Model):
     __tablename__ = 'orders'
@@ -69,7 +66,6 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    # 在实际应用中，应该使用加密的密码
     user_name = User.query.filter_by(name=username, password=password).first()
     user_email = User.query.filter_by(email=username, password=password).first()
     
@@ -83,15 +79,14 @@ def login():
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
-    # 'role'字段未被显式提供，将使用在模型中定义的默认值 'customer'
     new_user = User(
         name=data['name'],
         email=data['email'],
-        password=data['password']  # 注意：生产环境中密码应该加密
+        password=data['password']
     )
     db.session.add(new_user)
     db.session.commit()
-    # 在返回的JSON中包括用户角色
+    
     return jsonify({'id': new_user.id, 'name': new_user.name, 'email': new_user.email, 'role': new_user.role}), 201
 
 
@@ -102,15 +97,12 @@ def create_order():
         user_id = data['user_id']
         order_items = data['order_details']
 
-        # 验证用户是否存在
         user = db.session.get(User, user_id)
         if not user:
             return jsonify({'error': 'User not found'}), 404
 
-        # 初始化订单总价
         total_price = 0
 
-        # 验证每个菜品是否存在并计算总价
         for item in order_items:
             dish = db.session.get(Dish, item['dish_id'])
             if not dish:
@@ -121,7 +113,7 @@ def create_order():
         distance = round(random.uniform(1.0, 10.0))
         new_order = Order(user_id=user_id, total_price=total_price, status='Pending',distance=distance)
         db.session.add(new_order)
-        db.session.flush()  # 获取新创建订单的ID
+        db.session.flush()
 
         # 创建订单详情记录
         for item in order_items:
@@ -132,10 +124,8 @@ def create_order():
             )
             db.session.add(order_detail)
 
-        # 保存所有更改到数据库
         db.session.commit()
 
-        # 返回订单信息
         return jsonify({
             'order_id': new_order.id,
             'total_price': str(total_price),
@@ -163,22 +153,19 @@ def get_all_orders():
                     'quantity': detail.quantity,
                     'price': str(dish.price)
                 })
-        # 添加订单数据，ID在前，详情在后
-        # 添加订单数据，包括随机生成的路程
         orders_data.append({
             'order_id': order.id,
             'user_id': order.user_id,
             'total_price': str(order.total_price),
             'status': order.status,
-            'created_at': order.created_at.isoformat(),  # 添加了创建时间
-            'order_details': details_list,  # 详情放在最后
-            'distance': round(order.distance, 2),  # 从数据库获取路程
+            'created_at': order.created_at.isoformat(),
+            'order_details': details_list,
+            'distance': round(order.distance, 2),
         })
     return jsonify(orders_data), 200
 
 @app.route('/orders/<int:order_id>', methods=['GET'])
 def get_order_details(order_id):
-    # 查询指定ID的订单
     order = Order.query.get(order_id)
     if not order:
         return jsonify({'error': 'Order not found'}), 404
@@ -195,8 +182,7 @@ def get_order_details(order_id):
                 'quantity': detail.quantity,
                 'price': str(dish.price)
             })
-
-    # 构建并返回订单信息
+            
     order_data = {
         'order_id': order.id,
         'user_id': order.user_id,
@@ -216,31 +202,24 @@ def delete_order(order_id):
     if order is None:
         return jsonify({'error': 'Order not found'}), 404
 
-    # 删除所有相关的订单细节
     OrderDetail.query.filter_by(order_id=order_id).delete()
 
-    # 删除订单本身
     db.session.delete(order)
-
-    # 提交更改到数据库
     db.session.commit()
 
     return jsonify({'message': 'Order and details deleted successfully'}), 200
 
 @app.route('/dishes', methods=['GET'])
 def get_dishes_by_type():
-    # 获取查询参数，默认值是 'all'
     cuisine_type = request.args.get('type', 'all')
 
-    # 根据类型过滤菜品
     if cuisine_type.lower() == 'chinese':
         dishes = Dish.query.filter_by(restaurant='chinese').all()
     elif cuisine_type.lower() == 'western':
         dishes = Dish.query.filter_by(restaurant='western').all()
     else:
-        dishes = Dish.query.all()  # 如果没有指定或指定为 'all'，返回所有菜品
+        dishes = Dish.query.all()
 
-    # 序列化数据为JSON格式
     dishes_data = [{
         'id': dish.id,
         'name': dish.name,
@@ -254,17 +233,13 @@ def get_dishes_by_type():
 
 @app.route('/admin/dishes', methods=['GET'])
 def get_dishes_for_admin():
-    # 获取管理员的用户名，这里假设前端通过查询参数传递
     admin_username = request.args.get('username')
 
-    # 根据用户名查询管理员信息
     admin = User.query.filter_by(name=admin_username).first()
 
-    # 如果管理员不存在或不是管理员角色，则返回错误
     if not admin or admin.role != 'admin':
         return jsonify({'error': 'Unauthorized or admin not found'}), 403
 
-    # 如果管理员存在，获取其管理的餐厅类型，并查询相应的菜品
     if admin.restaurant:
         dishes = Dish.query.filter_by(restaurant=admin.restaurant).all()
         dishes_data = [{
@@ -300,12 +275,10 @@ def add_dish():
 # 查询特定ID菜品信息
 @app.route('/dishes/<int:dish_id>', methods=['GET'])
 def get_dish_details(dish_id):
-    # 查询指定ID的菜品
     dish = Dish.query.get(dish_id)
     if not dish:
         return jsonify({'error': 'Dish not found'}), 404
 
-    # 构建并返回菜品信息
     dish_data = {
         'id': dish.id,
         'name': dish.name,
@@ -345,8 +318,8 @@ def delete_dish(dish_id):
     return jsonify({'message': 'Dish deleted successfully'}), 200
 
 
-# 同理，你可以为`orders`添加相应的处理函数...
-CORS(app, resources={r"/*": {"origins": "*"}})  # 允许所有域名跨域访问
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
