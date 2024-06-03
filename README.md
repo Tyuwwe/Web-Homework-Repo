@@ -8,7 +8,7 @@ Version 1.6.0 r2
 
 ## [R-E-Dine Electron Client](./R-E-Dine)
 
-License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine)
+License: GPLv3
 
 #### Usage:
 
@@ -28,7 +28,7 @@ License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine)
 
 ## [R-E-Dine Server](./R-E-Dine-Server)
 
-License: GPLv3 | [Original Repo](https://github.com/1324151534/R-E-Dine-Server)
+License: GPLv3
 
 #### Usage:
 
