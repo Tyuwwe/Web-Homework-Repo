@@ -66,6 +66,12 @@ def get_user(userId):
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid username or password'}), 401
+    if 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Invalid username or password'}), 401
+    if len(data['password']) < 6:
+        return jsonify({'error': 'Password must be at least 6 characters'}), 401
     username = data.get('username')
     password = data.get('password')
 
