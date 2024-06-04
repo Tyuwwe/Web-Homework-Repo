@@ -1,78 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- 内容安全策略，限制资源的加载来源 -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; img-src 'self' blob: data:"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <!-- 加载自定义样式表 -->
-    <link rel="stylesheet" type="text/css" href="./css/custom.css">
-    <link rel="stylesheet" type="text/css" href="./css/dining.css">
-    <title>RED 点餐配送系统 | 商家服务 添加菜品</title>
-  </head>
-  <body class="dining-body">
-    <div class="drag-part"></div>
-    <div class="wrapper">
-        <div id="closeWindow" class="btn close-btn"></div>
-    </div>
-    <div class="box-add">
-        <div class="float float-box-add">
-            <div class="title title-left">新增餐品</div>
-            <div class="subtitle subtitle-left">R-E-Dine 后台管理系统</div>
-            <div class="list food-add-list">
-                <!-- 表单，用于提交新餐品信息 -->
-                <form id="addFoodForm" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="f_name" class="form-label">餐品名称</label>
-                      <input id="f_name" class="form-control" name="food_name" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="f_price" class="form-label">餐品售价</label>
-                      <input id="f_price" class="form-control" name="food_price" type="number" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="f_count" class="form-label">餐品数量</label>
-                      <input id="f_count" class="form-control" name="food_count" type="number" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="f_addpic" class="form-label">餐品照片</label>
-                      <div class="custom-file">
-                        <input type="file" id="f_addpic" class="custom-file-input" name="food_picture" accept="image/*" required>
-                        <label class="custom-file-label" for="f_addpic">选择图片</label>
-                      </div>
-                      <img id="f_addpic-img" class="addpic-img" src="./assets/pic/food.jpg">
-                    </div>
-                    <button type="submit" class="btn btn-primary">提交</button>
-                  </form>
-            </div>
-        </div>
-    </div>
-    <!-- 加载JavaScript文件 -->
-    <script src="./js/dining-add-old-renderer.js"></script>
-    <script src="./js/general-functions.js"></script>
-    <script>
-        // JavaScript代码用于处理图片预览
-        document.getElementById('f_addpic').addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('f_addpic-img').src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
 
-        // 拦截表单默认提交行为，并提供自定义提交逻辑
-        document.getElementById('addFoodForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // 在这里添加表单提交逻辑（例如，AJAX请求）
-            alert('表单已提交！');
-        });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <!-- 内容安全策略，限制资源的加载来源 -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; img-src 'self' blob: data:" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <!-- X-Frame-Options -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <!-- 加载自定义样式表 -->
+  <link rel="stylesheet" type="text/css" href="./css/custom.css">
+  <link rel="stylesheet" type="text/css" href="./css/dining.css">
+  <title>RED 点餐配送系统 | 商家服务 添加菜品</title>
+</head>
+
+<body class="dining-body">
+  <div class="drag-part"></div>
+  <div class="wrapper">
+    <div id="closeWindow" class="btn close-btn"></div>
+  </div>
+  <div class="box-add">
+    <div class="float float-box-add">
+      <div class="title title-left">新增餐品</div>
+      <div class="subtitle subtitle-left">R-E-Dine 后台管理系统</div>
+      <div class="list food-add-list">
+        <!-- 表单，用于提交新餐品信息 -->
+        <form id="addFoodForm" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="f_name" class="form-label">餐品名称</label>
+            <input id="f_name" class="form-control" name="food_name" required>
+          </div>
+          <div class="form-group">
+            <label for="f_price" class="form-label">餐品售价</label>
+            <input id="f_price" class="form-control" name="food_price" type="number" step="0.01" required>
+          </div>
+          <div class="form-group">
+            <label for="f_count" class="form-label">餐品数量</label>
+            <input id="f_count" class="form-control" name="food_count" type="number" required>
+          </div>
+          <div class="form-group">
+            <label for="f_addpic" class="form-label">餐品照片</label>
+            <div class="custom-file">
+              <input type="file" id="f_addpic" class="custom-file-input" name="food_picture" accept="image/*" required>
+              <label class="custom-file-label" for="f_addpic">选择图片</label>
+            </div>
+            <img id="f_addpic-img" class="addpic-img" src="./assets/pic/food.jpg">
+          </div>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- 加载JavaScript文件 -->
+  <script src="./js/dining-add-old-renderer.js"></script>
+  <script src="./js/general-functions.js"></script>
+  <script>
+    // JavaScript代码用于处理图片预览
+    document.getElementById('f_addpic').addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('f_addpic-img').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // 拦截表单默认提交行为，并提供自定义提交逻辑
+    document.getElementById('addFoodForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      // 在这里添加表单提交逻辑（例如，AJAX请求）
+      alert('表单已提交！');
+    });
+  </script>
+</body>
+
 </html>
