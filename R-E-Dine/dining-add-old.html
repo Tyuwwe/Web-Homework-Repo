@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; img-src 'self' blob: data:" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; img-src 'self' blob: data:; connect-src 'self';" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+        <style>
+          .addpic-img {
+            max-width: 200px;
+          }
+        </style>
+      </head>
   <link rel="stylesheet" type="text/css" href="./css/custom.css">
   <link rel="stylesheet" type="text/css" href="./css/dining.css">
   <title>RED 点餐配送系统 | 商家服务 添加菜品</title>
@@ -38,12 +45,17 @@
               <input id="f_count" class="form-control" name="food_count" type="number" required>
             </div>
             <div class="form-group">
-              <label for="f_addpic" class="form-label font-weight-bold">餐品照片</label>
-              <div class="custom-file">
-                <input type="file" id="f_addpic" class="custom-file-input" name="food_picture" accept="image/*" required>
-                <label class="custom-file-label" for="f_addpic">选择图片</label>
-              </div>
-              <img id="f_addpic-img" class="addpic-img mt-2 rounded" src="./assets/pic/food.jpg" style="max-width: 200px;">
+                <div class="form-group">
+                    <label for="f_addpic" class="form-label font-weight-bold">餐品照片</label>
+                    <div class="custom-file">
+                      <input type="file" id="f_addpic" class="custom-file-input" name="food_picture" accept="image/*" required>
+                      <label class="custom-file-label" for="f_addpic">选择图片</label>
+                    </div>
+                    <div class="text-center">
+                      <img id="f_addpic-img" class="addpic-img mt-2 rounded" src="./assets/pic/food.jpg" style="max-width: 200px;">
+                    </div>
+                    <small class="form-text text-muted">支持 JPG、PNG 等常见图片格式</small>
+                  </div>
             </div>
             <button type="submit" class="btn btn-primary">提交</button>
           </form>
